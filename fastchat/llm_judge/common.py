@@ -276,6 +276,8 @@ def run_judge_pair(question, answer_a, answer_b, judge, ref_answer, multi_turn=F
         judgment = chat_completion_anthropic(
             model, conv, temperature=0, max_tokens=1024
         )
+    elif model.startswith("azure-"):
+        judgment = chat_completion_openai_azure(model, conv, temperature=0, max_tokens=2048)
     else:
         raise ValueError(f"Invalid judge model name: {model}")
 
